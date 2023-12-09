@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use app\Http\Controllers\HomeController;
+use app\Http\Controllers\PersonController;
 
 
 /*
@@ -16,19 +18,20 @@ use Illuminate\Support\Facades\Route;
 
 
 
-Route::get('/', function () {
-    return "Hello From RCOEM";
-});
-
-Route::get('/', function () {
-    return view('aboutus');
-});
 
 
+Route::resource('person', PersonController::class)->only(['index','create']);
 
-Route::get('/person/{name}', function($name){
-    return "The name is $name.";
-})->name('person');
+
+Route::post(
+    '/contact',
+    [HomeController::class, 'create']
+)->name('contact.create');
+
+
+
+
+
 
 
 
